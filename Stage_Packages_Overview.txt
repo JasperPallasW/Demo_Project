@@ -1,0 +1,117 @@
+==============================================================================
+FIND YOUR LOST ITEMS - THE FOUR STAGE PACKAGES
+Each ZIP is a COMPLETE project. Unzip it, open index.html, and it runs.
+==============================================================================
+
+HOW TO USE
+  - Stage1 / Stage2a: what we already have (for comparison).
+  - Stage2b: all core features. This is the target for the oral test (20 Oct).
+  - Stage3: Stage2b + the innovation features. Planned for 23-24 Oct, but it is
+    ready now so we can discuss it.
+  - Do NOT copy everything into the repository in one commit. Move to the next
+    stage file by file, and make sure you can explain each file first.
+
+
+------------------------------------------------------------------------------
+STAGE 1 - CURRENT (Stage1_Current.zip)           Pages and design, no logic
+------------------------------------------------------------------------------
+  The files as they are now: 7 HTML pages, css/style.css, empty js/data.js,
+  3 item photos, placeholder image, placeholder campus map.
+  Known problems: style.css is loaded before Bootstrap; forms only show a demo
+  message; cards, pins, and numbers are fixed text.
+
+
+------------------------------------------------------------------------------
+STAGE 2a - LINKED WITH JAVASCRIPT (Stage2a_Linked_JS.zip)
+------------------------------------------------------------------------------
+  Changes from Stage 1:
+    - All pages: style.css moved AFTER Bootstrap; ids on the menu links;
+      js/auth.js loaded.
+    - js/auth.js        register, login, logout, user name in the menu
+    - js/data.js        10 sample items (3 with real photos)
+    - js/items.js       item cards made by JavaScript
+    - js/search.js      keyword search + category and status filters
+    - login.html, register.html, items.html: connected to the scripts
+  Still fixed (not working yet): report form, map pins, history numbers.
+
+
+------------------------------------------------------------------------------
+STAGE 2b - ALL CORE FEATURES (Stage2b_Features.zip)
+------------------------------------------------------------------------------
+  New files:
+    - js/utils.js       helper functions used by many pages (NEW, not in the
+                        first file map: card builder, safe text, image path)
+    - js/storage.js     getItems, saveItems, addItem, findItemById,
+                        updateItemStatus  (items are kept in localStorage)
+    - js/report.js      report form: login required, photo shrink (canvas) and
+                        preview, save the item, open its detail page
+    - pages/detail.html + js/detail.js
+                        item page, WhatsApp contact (login required), the
+                        reporter can mark the item as "returned"
+    - js/history.js     counts and table from the real data
+    - js/locations.js   pin position of each building (percent of the map)
+    - js/map.js         one clickable pin per item; pins in the same place
+                        are moved a little so they do not hide each other
+    - docs/test-report.md   the 14 tests (to fill in)
+  Changed files:
+    - js/items.js and js/search.js now read items with getItems()
+    - report.html, history.html, map.html: fixed text removed, ids added,
+      scripts added
+    - css/style.css: small block for the detail photo
+
+  Script order on pages that use items (top to bottom):
+    auth.js, utils.js, data.js, storage.js, [page script]
+  map.html also needs locations.js before map.js.
+
+
+------------------------------------------------------------------------------
+STAGE 3 - FINAL (Stage3_Final.zip)
+------------------------------------------------------------------------------
+  New or changed compared with Stage 2b:
+    - js/matching.js    simple AI (rule-based): score 0-100 from category +40,
+                        location +30, shared keywords (max +20), dates within
+                        3 days +10. Shows the best 3 matches (50 or more).
+    - js/detail.js      adds claim verification (a found item with a hidden
+                        detail: the visitor must describe it before the contact
+                        button appears) and the "Possible matches" list
+    - js/home.js        working search box on the home page (opens
+                        items.html?q=word) and the 3 latest items
+    - js/search.js      reads ?q=word from the address
+    - js/map.js         adds the status filter (all / lost / found / returned)
+    - index.html        "How it works" section + latest items
+    - js/data.js        12 items: adds a found keys item and a found phone so
+                        the AI matching has something to show; hidden details
+                        added to some found items
+    - css/style.css     animation (hero fade-in), "how it works" cards, match badge
+    - README.md         final README (problem, solution, features, structure,
+                        team, limits)
+
+
+------------------------------------------------------------------------------
+WHAT STILL NEEDS HUMAN WORK (NOT IN ANY ZIP)
+------------------------------------------------------------------------------
+  [ ] Real photos for items 4-12 (images/ + the "image" field in data.js)   B
+  [ ] REAL campus map image + measured pin positions in locations.js         B
+  [ ] Wireframe photos in docs/wireframes/                                   A+B
+  [ ] Run the 14 tests in a real browser and fill docs/test-report.md        A+B
+  [ ] README: screenshots, live link, final team table from the commit log   B
+  [ ] Netlify deployment and the live link                                   A
+  [ ] PPT, ZIP of the code, upload to Google Drive                           A+B
+
+HOW THE CODE WAS CHECKED
+  The logic (register, login, items, search, filters, report, detail, history,
+  map pins, matching, claim check, home search) was tested with a simulated
+  browser: 81 checks passed. It was NOT opened in a real browser, so the first
+  real test on your laptop (F12 > Console for errors) is important. Photo
+  upload (FileReader and canvas) can only be tested in a real browser.
+
+IF YOU ALREADY OPENED AN EARLIER STAGE IN YOUR BROWSER
+  The starting items are copied to localStorage only once. To load the new
+  data.js: open the website, press F12, open the Console, type
+      resetItems()
+  and refresh the page (or: Application > Local Storage > delete "lf_items").
+  Accounts are kept in "lf_users", so they stay.
+
+==============================================================================
+END OF DOCUMENT
+==============================================================================
