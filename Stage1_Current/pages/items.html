@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items - Find Your Lost Items</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+    
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">Find Your Lost Items</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainMenu"
+              aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container py-5">
+    <h2 class="page-title mb-4">Find Your Lost Items</h2>
+
+    <!-- Search and filter (not working yet, JavaScript comes later) -->
+    <div class="row g-2 mb-4">
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Search item, e.g. wallet, keys, phone">
+      </div>
+      <div class="col-md-3">
+        <select class="form-select">
+          <option selected>All categories</option>
+          <option>Wallet</option>
+          <option>Keys</option>
+          <option>Bag</option>
+          <option>Phone</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select">
+          <option selected>All status</option>
+          <option>Lost</option>
+          <option>Found</option>
+          <option>Returned</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Item cards (static for now, later made by JavaScript from data.js) -->
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card item-card h-100">
+          <img src="../images/blackWallet.jpeg" class="card-img-top" alt="Black Wallet">
+          <div class="card-body">
+            <span class="badge bg-success mb-2">Found</span>
+            <h5 class="card-title">Black Wallet</h5>
+            <p class="card-text">Black leather wallet with a blue ATM card inside.</p>
+            <p class="text-muted small mb-0">Location: Library<br>Date: 2026-10-05</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="detail.html" class="btn btn-lf w-100">View Detail</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card item-card h-100">
+          <img src="../images/silverKeys.jpeg" class="card-img-top" alt="Silver Keys">
+          <div class="card-body">
+            <span class="badge bg-danger mb-2">Lost</span>
+            <h5 class="card-title">Silver Keys</h5>
+            <p class="card-text">Two silver keys with a keychain shaped like a star.</p>
+            <p class="text-muted small mb-0">Location: Canteen<br>Date: 2026-10-06</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="detail.html" class="btn btn-lf w-100">View Detail</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card item-card h-100">
+          <img src="../images/blueBackpack.jpeg" class="card-img-top" alt="Blue Backpack">
+          <div class="card-body">
+            <span class="badge bg-secondary mb-2">Returned</span>
+            <h5 class="card-title">Blue Backpack</h5>
+            <p class="card-text">Blue backpack with a laptop sleeve and a small name tag.</p>
+            <p class="text-muted small mb-0">Location: Main Building<br>Date: 2026-10-07</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-3">
+            <a href="detail.html" class="btn btn-lf w-100">View Detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-3">
+    <div class="container">
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

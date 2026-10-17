@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History - Find Your Lost Items</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">Find Your Lost Items</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainMenu"
+              aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link active" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container py-5">
+    <h2 class="page-title mb-4">History</h2>
+
+    <!-- Number cards (static for now, JavaScript will count from data.js later) -->
+    <div class="row g-3 mb-4 text-center">
+      <div class="col-md-4">
+        <div class="card"><div class="card-body">
+          <div class="stat-number">1</div><div>Still Lost</div>
+        </div></div>
+      </div>
+      <div class="col-md-4">
+        <div class="card"><div class="card-body">
+          <div class="stat-number">1</div><div>Found</div>
+        </div></div>
+      </div>
+      <div class="col-md-4">
+        <div class="card"><div class="card-body">
+          <div class="stat-number">1</div><div>Returned to Owner</div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle">
+        <thead class="table-light">
+          <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>Black Wallet</td>
+              <td>Wallet</td>
+              <td><span class="badge bg-success">Found</span></td>
+              <td>Library</td>
+              <td>2026-10-05</td>
+            </tr>
+            <tr>
+              <td>Silver Keys</td>
+              <td>Keys</td>
+              <td><span class="badge bg-danger">Lost</span></td>
+              <td>Canteen</td>
+              <td>2026-10-06</td>
+            </tr>
+            <tr>
+              <td>Blue Backpack</td>
+              <td>Bag</td>
+              <td><span class="badge bg-secondary">Returned</span></td>
+              <td>Main Building</td>
+              <td>2026-10-07</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-3">
+    <div class="container">
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

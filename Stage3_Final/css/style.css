@@ -1,0 +1,181 @@
+/* Find Your Lost Items - main style file */
+
+/* ----- Our 2 main colors (change here if we choose other colors) ----- */
+:root {
+  --main-color: #1e3a8a;    /* dark blue */
+  --accent-color: #f59e0b;  /* orange */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* keeps the footer at the bottom */
+}
+
+/* ----- Navbar ----- */
+.navbar-lf {
+  background-color: var(--main-color);
+}
+
+.navbar-lf .nav-link:hover {
+  color: var(--accent-color);
+}
+
+.btn-register {
+  background-color: var(--accent-color);
+  color: #000 !important;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+/* ----- Hero (big top section) ----- */
+.hero {
+  background: linear-gradient(135deg, var(--main-color), #3b82f6);
+  color: white;
+}
+
+/* ----- Buttons ----- */
+.btn-lf {
+  background-color: var(--accent-color);
+  border: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.btn-lf:hover {
+  background-color: #d97706;
+}
+
+/* ----- Footer ----- */
+.footer-lf {
+  background-color: var(--main-color);
+  color: white;
+}
+
+/* ----- Navbar: highlight the current page ----- */
+.navbar-lf .nav-link.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* ----- Page titles ----- */
+.page-title {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+/* ----- Item cards (items page) ----- */
+.item-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.item-card img {
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ----- Campus map and pins ----- */
+.map-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 2px solid var(--main-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.map-container img {
+  width: 100%;
+  display: block;
+}
+
+/* A pin is placed with left/top in percent, so it stays correct on any screen size */
+.map-pin {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.map-pin:hover {
+  transform: translate(-50%, -50%) scale(1.4);
+}
+
+.pin-lost { background-color: #dc3545; }
+.pin-found { background-color: #198754; }
+.pin-returned { background-color: #6c757d; }
+
+/* ----- Number cards on the history page ----- */
+.stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--main-color);
+}
+
+/* ----- Detail page ----- */
+.detail-photo {
+  width: 100%;
+  max-height: 420px;
+  object-fit: contain;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* ----- Home: how it works ----- */
+.step-card {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+}
+
+.step-card:hover {
+  transform: translateY(-4px);
+}
+
+.step-number {
+  width: 48px;
+  height: 48px;
+  line-height: 48px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: #000;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+/* ----- Animation (hero text fades in) ----- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1,
+.hero p,
+.hero .row {
+  animation: fadeInUp 0.8s ease both;
+}
+
+.hero p { animation-delay: 0.15s; }
+.hero .row { animation-delay: 0.3s; }
+
+/* ----- Matches on the detail page ----- */
+.match-score {
+  font-size: 0.9rem;
+}

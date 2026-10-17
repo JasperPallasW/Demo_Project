@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items - Find Your Lost Items</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <!-- style.css must come AFTER Bootstrap, so our styles win -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">Find Your Lost Items</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainMenu"
+              aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" id="navLogin" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" id="navRegister" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container py-5">
+    <h2 class="page-title mb-4">Find Your Lost Items</h2>
+
+    <!-- Search and filter (all three work with search.js) -->
+    <div class="row g-2 mb-4">
+      <div class="col-md-6">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search item, e.g. wallet, keys, phone">
+      </div>
+      <div class="col-md-3">
+        <select class="form-select" id="categoryFilter">
+          <option value="all" selected>All categories</option>
+          <option>Wallet</option>
+          <option>Keys</option>
+          <option>Bag</option>
+          <option>Phone</option>
+          <option>ID Card</option>
+          <option>Electronics</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select" id="statusFilter">
+          <option value="all" selected>All status</option>
+          <option>Lost</option>
+          <option>Found</option>
+          <option>Returned</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="itemCount" class="text-muted"></p>
+
+    <!-- The cards are created by items.js from the list in data.js -->
+    <div id="itemList" class="row g-4"></div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-3">
+    <div class="container">
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/data.js"></script>
+    <script src="../js/items.js"></script>
+    <script src="../js/search.js"></script>
+</body>
+</html>

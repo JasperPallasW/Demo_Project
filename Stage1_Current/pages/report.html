@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report - Find Your Lost Items</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html">Find Your Lost Items</a>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainMenu"
+              aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link active" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h2 class="page-title mb-4">Report an Item</h2>
+
+            <form id="reportForm" onsubmit="event.preventDefault(); alert('Form is valid. JavaScript will be added later.');">
+
+              <!-- Lost or found -->
+              <div class="mb-3">
+                <label class="form-label d-block">What do you want to report?</label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="reportType" id="typeLost" value="lost" required>
+                  <label class="form-check-label" for="typeLost">I lost an item</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="reportType" id="typeFound" value="found">
+                  <label class="form-check-label" for="typeFound">I found an item</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="itemName" class="form-label">Item Name</label>
+                  <input type="text" class="form-control" id="itemName" minlength="3" placeholder="e.g. Black wallet" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="category" class="form-label">Category</label>
+                  <select class="form-select" id="category" required>
+                    <option value="" selected disabled>Choose category</option>
+                    <option>Wallet</option>
+                    <option>Keys</option>
+                    <option>Bag</option>
+                    <option>Phone</option>
+                    <option>ID Card</option>
+                    <option>Electronics</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" rows="4" minlength="10"
+                          placeholder="Color, brand, size, stickers, anything special about the item" required></textarea>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="date" class="form-label">Date</label>
+                  <input type="date" class="form-control" id="date" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="location" class="form-label">Location</label>
+                  <select class="form-select" id="location" required>
+                    <option value="" selected disabled>Choose location</option>
+                  <option>Main Building</option>
+                  <option>Library</option>
+                  <option>Canteen</option>
+                  <option>Computer Lab</option>
+                  <option>Sports Ground</option>
+                  <option>Parking</option>
+                  <option>Main Gate</option>
+                  <option>Other</option>
+                  </select>
+                  <div class="form-text">Later you can also click the location on the campus map.</div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="photo" class="form-label">Photo (optional)</label>
+                <input type="file" class="form-control" id="photo" accept="image/*">
+                <!-- Photo preview will be shown here after we add JavaScript -->
+                <img id="photoPreview" class="img-thumbnail mt-2 d-none" alt="Photo preview" style="max-height: 200px;">
+              </div>
+
+              <div class="mb-4">
+                <label for="secret" class="form-label">Hidden detail for verification (for found items)</label>
+                <input type="text" class="form-control" id="secret"
+                       placeholder="e.g. the wallpaper of the phone, a note inside the bag">
+                <div class="form-text">Not shown publicly. Only the real owner should be able to answer it.</div>
+              </div>
+
+              <button type="submit" class="btn btn-lf w-100">Submit Report</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-3">
+    <div class="container">
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

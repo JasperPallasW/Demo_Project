@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Lost Items</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <!-- style.css must come AFTER Bootstrap, so our styles win -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+      <!-- ===== NAVBAR (top menu) ===== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Find Your Lost Items</a>
+
+      <!-- Button that appears on small screens (phone) -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#mainMenu"
+              aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="pages/history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" id="navLogin" href="pages/login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" id="navRegister" href="pages/register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <section class="hero text-center">
+      <div class="container py-5">
+        <h1 class="display-5 fw-bold">Lost something on campus?</h1>
+        <p class="lead">Find it here, or help someone get their item back.</p>
+
+        <!-- Search box (home.js opens the items page with your word) -->
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="homeSearchInput" placeholder="Search item, e.g. wallet, keys, phone">
+              <button class="btn btn-lf" type="button" id="homeSearchButton">Search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="container py-5">
+      <h2 class="page-title text-center mb-4">How It Works</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="card step-card h-100"><div class="card-body">
+            <div class="step-number">1</div>
+            <h5>Report</h5>
+            <p class="mb-0">Create an account and report a lost or found item with a photo, details, and the place on the campus.</p>
+          </div></div>
+        </div>
+        <div class="col-md-4">
+          <div class="card step-card h-100"><div class="card-body">
+            <div class="step-number">2</div>
+            <h5>Search</h5>
+            <p class="mb-0">Search the list, use the filters, or open the campus map to see where items were lost or found.</p>
+          </div></div>
+        </div>
+        <div class="col-md-4">
+          <div class="card step-card h-100"><div class="card-body">
+            <div class="step-number">3</div>
+            <h5>Get it back</h5>
+            <p class="mb-0">Prove the item is yours with a hidden detail, contact the finder, and get your item back.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest items (made by home.js) -->
+    <section class="container pb-5">
+      <h2 class="page-title text-center mb-4">Latest Items</h2>
+      <div id="latestItems" class="row g-4"></div>
+      <div class="text-center mt-4">
+        <a href="pages/items.html" class="btn btn-lf">See all items</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (bottom) ===== -->
+  <footer class="footer-lf text-center py-3">
+    <div class="container">
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/home.js"></script>
+</body>
+</html>
