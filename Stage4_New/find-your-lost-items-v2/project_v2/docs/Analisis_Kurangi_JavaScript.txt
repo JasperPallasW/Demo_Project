@@ -1,0 +1,280 @@
+==============================================================================
+ANALISIS: MENGURANGI JAVASCRIPT DI PROJECT "FIND YOUR LOST ITEMS"
+Versi 2 | Untuk oral test Basic Web Development
+==============================================================================
+
+Saran dosen: "Cari alternatif untuk mengurangi penggunaan JavaScript, dan
+bagaimana dampaknya: apakah website jadi statis atau tetap dinamis."
+
+Jawaban singkat: website TETAP dinamis. Yang kita pindahkan dari JavaScript ke
+HTML dan CSS adalah semua yang sifatnya TAMPILAN dan INTERAKSI VISUAL. JavaScript
+hanya dipakai untuk satu hal yang memang tidak bisa dilakukan HTML/CSS: mengolah
+DATA (menyimpan akun dan laporan, membaca, mencari, menghitung).
+
+
+------------------------------------------------------------------------------
+1. PRINSIP: PAKAI ALAT PALING SEDERHANA DULU
+------------------------------------------------------------------------------
+
+  1) Bisa dengan HTML saja?        -> pakai HTML
+  2) Bisa dengan CSS?              -> pakai CSS
+  3) Perlu mengolah data / logika? -> baru pakai JavaScript
+
+Alasan: kode lebih sedikit, lebih mudah dijelaskan, lebih sedikit bug, dan
+halaman lebih ringan.
+
+
+------------------------------------------------------------------------------
+2. YANG SUDAH DIPINDAHKAN KE HTML/CSS (DI KODE KITA)
+------------------------------------------------------------------------------
+
+  Fitur                         Cara tanpa JavaScript                    Lokasi
+  ----------------------------  ---------------------------------------  ----------------
+  Menu di HP (buka/tutup)       Checkbox tersembunyi + label +           style.css bagian 2
+                                selector "~" (sibling). Bootstrap        semua halaman
+                                JavaScript tidak dimuat lagi
+  Tab status (All/Lost/Found/   Tombol radio tersembunyi + label +       style.css bagian 6
+  Returned)                     pseudo-class :checked + :has()           items.html
+  Filter kategori               <select>, aturan CSS memakai             style.css bagian 6
+                                :has(option:checked) dan selector
+                                atribut [data-category="..."]
+  Pilihan asal siswa            Radio India / International + :has()     style.css bagian 7
+  (India atau internasional)    menampilkan kolom yang sesuai            register.html
+  Saran negara saat mengetik    <datalist> (HTML saja)                   register.html
+  FAQ buka-tutup                <details> dan <summary>                  index.html
+  Form "barang sudah kembali"   <details> (membuka sendiri)              detail.html
+  Tooltip pin peta              Pseudo-element ::after + attr(data-tip)  style.css bagian 11
+  Hover, animasi, gradient      CSS transition, @keyframes, gradient     style.css
+  Cari dari beranda             <form method="get"> -> items.html?q=..   index.html
+  Hubungi lewat WhatsApp        Tautan biasa https://wa.me/...           detail.js (hanya
+                                                                         menyusun alamat)
+  Cetak sertifikat              CSS @media print (JS hanya satu baris    style.css bagian 10
+                                untuk tombol print)
+  Validasi dasar form           Atribut HTML5: required, type, pattern,  semua form
+                                minlength
+
+Semua ini cocok dengan silabus: Pseudo-class, Pseudo-element, Attribute
+Selectors, Animations, Gradients, Navigation Bar (Unit 4); forms (Unit 3).
+
+
+------------------------------------------------------------------------------
+3. YANG TETAP MEMBUTUHKAN JAVASCRIPT (DAN KENAPA)
+------------------------------------------------------------------------------
+
+  Kebutuhan                                  Kenapa HTML/CSS tidak cukup
+  -----------------------------------------  ----------------------------------
+  Simpan akun, login, ingat siapa yang       Perlu menulis dan membaca data
+  login (auth.js, storage.js)                (localStorage)
+  Simpan laporan baru, ubah status jadi      Data berubah saat pengguna bekerja
+  "returned" (report.js, detail.js)
+  Membuat kartu, tabel, pin dari data        Isi halaman bergantung pada data
+  (ui.js, items.js, home.js, history.js,
+  map.js, heroes.js)
+  Pencarian kata bebas (items.js)            CSS tidak bisa membandingkan teks
+                                             yang diketik
+  Hitung angka, ranking, lencana             Perlu menghitung dari data
+  Cek "password sama" dan asal siswa wajib   CSS tidak bisa membandingkan dua
+  diisi (auth.js)                            isian, dan "required" bersyarat
+                                             tidak ada di HTML
+  Perkecil foto sebelum disimpan             Perlu FileReader dan <canvas>
+  (report.js)
+
+Ukuran: kode logika JavaScript kita sekitar 800 baris (tanpa data.js dan
+locations.js, tanpa baris kosong dan komentar). Memindahkan fitur-fitur tampilan
+di bagian 2 ke JavaScript kira-kira akan menambah 70-100 baris (ini perkiraan,
+bukan hitungan pasti), ditambah memuat Bootstrap JavaScript (sekitar 80 KB).
+
+
+------------------------------------------------------------------------------
+4. DAMPAKNYA: STATIS ATAU DINAMIS?
+------------------------------------------------------------------------------
+
+Ada DUA jenis "dinamis":
+  - Dinamis TAMPILAN: halaman bereaksi (hover, tab, buka-tutup, animasi,
+    tooltip). Ini bisa dengan CSS dan HTML.
+  - Dinamis DATA: isi halaman berubah karena data berubah (akun baru, laporan
+    baru, ranking). Ini butuh JavaScript (atau server).
+
+Tiga pilihan desain:
+
+  A) Tanpa JavaScript sama sekali (statis murni)
+     - Semua barang ditulis manual di HTML. Barang baru TIDAK bisa muncul.
+     - Tidak ada register, login, laporan tersimpan, ranking, atau pencarian
+       kata bebas.
+     - Terasa hidup secara visual (hover, tab, FAQ), tapi isinya tetap.
+     - Kekurangan terbesar: tidak memenuhi inti project (rubrik Functionality
+       dan template HTML5 + CSS + Bootstrap + JS).
+
+  B) Hybrid: yang kita pilih
+     - HTML/CSS untuk interaksi tampilan, JavaScript hanya untuk data.
+     - Website tetap dinamis penuh (laporan, login, ranking, peta).
+     - Kode JavaScript lebih pendek dan lebih mudah dijelaskan.
+
+  C) JavaScript untuk semuanya
+     - Fungsi sama seperti B, tapi kode lebih panjang, lebih banyak bug
+       potensial, dan memuat Bootstrap JavaScript.
+
+  Ringkasan:
+                       A. Statis    B. Hybrid (kita)   C. JS penuh
+  Data berubah         tidak        ya                 ya
+  Interaksi visual     ya           ya                 ya
+  Jumlah JavaScript    0            sedang (~800)      paling banyak
+  Mudah dijelaskan     mudah        sedang             sulit
+  Sesuai rubrik        tidak        ya                 ya
+
+
+------------------------------------------------------------------------------
+5. KETERBATASAN DAN TRADE-OFF (JUJUR)
+------------------------------------------------------------------------------
+
+  1) :has() membutuhkan browser yang cukup baru (Chrome/Edge 105+, Safari 15.4+,
+     Firefox 121+, perkiraan; cek caniuse.com). Di browser lama, tab dan filter
+     CSS tidak bekerja, tetapi SEMUA barang tetap tampil (gagal dengan aman).
+  2) Filter CSS tidak bisa menghitung jumlah hasil atau menampilkan pesan
+     "tidak ada barang". Karena itu jumlah hasil hanya ditampilkan untuk
+     pencarian kata (yang memakai JavaScript).
+  3) Kolom negara/state yang "wajib" secara bersyarat tidak bisa dibuat dengan
+     HTML saja, sehingga pengecekannya ada di auth.js.
+  4) Checkbox hack untuk menu perlu label dan fokus keyboard yang benar. Kita
+     sudah menambahkan aria-label dan gaya fokus.
+  5) Kita menambah Bootstrap Icons (ikon dari internet). Ini menambah satu
+     permintaan jaringan, jadi tidak semua penghematan dari menghapus Bootstrap
+     JavaScript hilang bersih.
+  6) Data tetap hanya di browser (localStorage). Mengurangi JavaScript tidak
+     mengubah hal ini. Solusi sungguhan: server dan database.
+
+Alternatif lain yang pernah dipertimbangkan:
+  - Netlify Forms (form HTML dengan atribut data-netlify="true"): laporan
+    terkirim ke dashboard Netlify tanpa JavaScript, tetapi datanya tidak bisa
+    ditampilkan kembali di website dan topik ini di luar silabus.
+  - <map> dan <area> (image map, Unit 2) untuk peta: tidak responsif di layar
+    kecil, jadi kita memakai tautan <a> yang diposisikan dengan persen.
+
+
+------------------------------------------------------------------------------
+6. PENGHARGAAN UNTUK PENEMU (FITUR UTAMA BARU)
+------------------------------------------------------------------------------
+
+Konsep: banyak tempat sudah menerima laporan barang HILANG. Keunggulan kita
+adalah mendorong orang melaporkan dan MENGEMBALIKAN barang TEMUAN.
+
+  Alur:
+  1) Penemu melapor dengan pilihan "I found an item" (reportType = "found").
+  2) Pemilik menghubungi penemu lewat WhatsApp (hanya untuk yang sudah login).
+  3) Setelah barang diserahkan, penemu membuka barangnya dan menekan
+     "I returned this item to its owner" (boleh mengisi nama pemilik dan
+     catatan terima kasih).
+  4) Status berubah menjadi "returned" (storage.js: markItemReturned).
+  5) Penemu mendapat 10 poin per barang (POINTS_PER_RETURN) dan lencana:
+     1 = Good Samaritan, 2 = Campus Helper, 3 atau lebih = Campus Hero
+     (tabel BADGES di storage.js).
+  6) Halaman Heroes menghitung ranking dari data (buildFinderBoard),
+     menampilkan podium, tabel, dan dinding ucapan terima kasih.
+  7) Setiap barang temuan yang sudah kembali punya sertifikat yang bisa dicetak
+     (certificate.html).
+
+  Dua kolom penting pada data barang:
+    reportType = apa yang dilakukan pelapor ("lost"/"found"), TIDAK berubah.
+    status     = keadaan sekarang ("lost"/"found"/"returned"), berubah.
+  Poin hanya untuk reportType "found" yang status-nya "returned".
+
+  Asal siswa: saat register, siswa memilih India (pilih state/union territory)
+  atau International (ketik negara). Disimpan di akun sebagai teks, misalnya
+  "Gujarat, India" atau "Nepal", dan ditampilkan di samping nama penemu.
+
+
+------------------------------------------------------------------------------
+7. PETA FILE VERSI 2
+------------------------------------------------------------------------------
+
+  Data
+    js/data.js        barang contoh (seedItems) + SEED_VERSION
+    js/locations.js   posisi tiap gedung di peta (persen)
+    js/storage.js     SEMUA baca/tulis localStorage, hitung statistik dan ranking
+  Bantuan
+    js/ui.js          membuat kartu, format tanggal, escapeHtml, ROOT/PAGES
+    js/auth.js        register, login, logout, nama di navbar (dimuat di SEMUA halaman)
+  Skrip per halaman
+    home.js, items.js, detail.js, report.js, map.js, history.js, heroes.js,
+    certificate.js
+
+  Urutan <script> di setiap halaman (yang dipakai harus dimuat lebih dulu):
+    data.js -> storage.js -> ui.js -> auth.js -> skrip halaman
+  Pada map.html ada locations.js setelah data.js.
+
+  Cara halaman tahu letak folder: <body data-root="../"> (halaman di folder
+  pages) atau data-root="" (index.html). ui.js membacanya menjadi ROOT, supaya
+  tautan dan gambar yang dibuat JavaScript benar dari folder mana pun.
+
+  Mengubah data contoh: edit js/data.js lalu naikkan SEED_VERSION satu angka.
+  Barang yang dibuat pengguna tetap aman.
+
+  Menjalankan ulang dari awal: F12 > Application > Local Storage > hapus.
+
+
+------------------------------------------------------------------------------
+8. PERTANYAAN ORAL TEST UNTUK TOPIK INI
+------------------------------------------------------------------------------
+
+ 1. Kenapa JavaScript dikurangi, dan apa dampaknya?
+    Interaksi tampilan lebih sederhana dilakukan dengan HTML/CSS: kode lebih
+    sedikit dan lebih mudah dipahami. Website tetap dinamis karena data tetap
+    diolah JavaScript (login, laporan, ranking).
+
+ 2. Jelaskan perbedaan dinamis tampilan dan dinamis data.
+    (Bagian 4.)
+
+ 3. Bagaimana menu HP bekerja tanpa JavaScript?
+    Checkbox tersembunyi. Label menjadi tombolnya. Saat dicentang, CSS
+    "input:checked ~ .menu-links" menampilkan menu. Di layar besar menu selalu
+    tampil.
+
+ 4. Bagaimana filter tab bekerja?
+    Tiap barang punya atribut data-status. Saat tab "Found" dicentang, aturan
+    "main:has(#tab-found:checked) .item-col:not([data-status='found'])
+    {display:none}" menyembunyikan kartu lain.
+
+ 5. Apa itu :has()?
+    Pseudo-class yang memilih elemen berdasarkan isinya. Contoh: main yang
+    di dalamnya ada tab yang dicentang.
+
+ 6. Bagaimana tooltip pin peta dibuat?
+    Pseudo-element ::after dengan content: attr(data-tip), muncul saat :hover.
+
+ 7. Kenapa pencarian tetap memakai JavaScript?
+    CSS tidak bisa membandingkan teks yang diketik pengguna dengan isi barang.
+
+ 8. Bagaimana sistem penghargaan menghitung ranking?
+    buildFinderBoard di storage.js: loop semua barang, ambil yang reportType
+    "found" dan status "returned", kelompokkan per penemu, hitung jumlah,
+    kali 10 untuk poin, tentukan lencana, lalu urutkan.
+
+ 9. Apa beda reportType dan status?
+    (Bagian 6.)
+
+10. Kenapa data barang disalin dari data.js ke localStorage?
+    data.js hanya data awal (tidak bisa ditulis oleh browser). localStorage bisa
+    diubah, jadi laporan baru dan status "returned" bisa tersimpan.
+
+11. Apa fungsi escapeHtml?
+    Supaya teks dari pengguna (misalnya "<b>") tampil sebagai teks, bukan
+    dianggap kode HTML (mencegah penyisipan kode).
+
+12. Bagaimana foto disimpan tanpa server?
+    FileReader membaca file, <canvas> memperkecilnya (maks 600 px),
+    toDataURL mengubahnya menjadi teks, lalu disimpan di localStorage.
+
+13. Apa kelemahan project ini?
+    Data hanya ada di browser, password teks biasa, dan filter CSS butuh
+    browser baru. Solusi nyata: server, database, password terenkripsi.
+
+Latihan "ubah kode" yang cocok untuk topik ini:
+  - Ubah poin per barang menjadi 20: POINTS_PER_RETURN di storage.js.
+  - Ubah batas lencana Gold menjadi 5: BADGES di storage.js.
+  - Tambah kategori "Clothes": report.html (pilihan), items.html (pilihan),
+    dan satu aturan baru di style.css bagian 6.
+  - Ubah warna lencana silver di style.css bagian 9.
+
+==============================================================================
+AKHIR DOKUMEN
+==============================================================================

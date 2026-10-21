@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Item detail - Find Your Lost Items</title>
+  <!-- Order matters: Bootstrap first, then icons, then OUR style.css (the last one wins) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-root="../">
+
+  <!-- ===== NAVBAR =====
+       The phone menu works with CSS only: a hidden checkbox + a label (no Bootstrap JavaScript) -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html"><i class="bi bi-search"></i> Find Your Lost Items</a>
+      <input type="checkbox" id="menuToggle" class="menu-toggle" aria-hidden="true">
+      <label for="menuToggle" class="navbar-toggler" aria-label="Open or close the menu"><span class="navbar-toggler-icon"></span></label>
+      <div class="navbar-collapse menu-links">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link" href="heroes.html">Heroes</a></li>
+          <li class="nav-item"><a class="nav-link" id="navLogin" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" id="navRegister" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div id="notFound" class="d-none text-center py-5">
+      <h2 class="page-title">Item not found</h2>
+      <p class="text-muted">This item does not exist (maybe the link is wrong).</p>
+      <a href="items.html" class="btn btn-lf">Back to items</a>
+    </div>
+
+    <div id="detailRoot">
+      <a href="items.html" class="small text-decoration-none"><i class="bi bi-arrow-left"></i> Back to all items</a>
+
+      <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+          <img id="detailImage" class="detail-photo" src="../images/placeHolder.svg" alt="Item photo">
+        </div>
+
+        <div class="col-lg-6">
+          <span id="detailStatus" class="badge fs-6 bg-secondary mb-2">Status</span>
+          <h2 id="detailName" class="page-title">Item name</h2>
+          <p id="detailReporter" class="mb-1"></p>
+          <div id="finderBox" class="mb-3"></div>
+
+          <ul class="info-list">
+            <li><i class="bi bi-tag-fill"></i> <strong>Category:</strong> <span id="detailCategory"></span></li>
+            <li><i class="bi bi-geo-alt-fill"></i> <strong>Location:</strong> <span id="detailLocation"></span> &middot; <a href="map.html">see map</a></li>
+            <li><i class="bi bi-calendar-event"></i> <strong>Date:</strong> <span id="detailDate"></span></li>
+            <li><i class="bi bi-card-text"></i> <strong>Description:</strong><br><span id="detailDescription"></span></li>
+          </ul>
+
+          <!-- Contact: a normal link to WhatsApp (no JavaScript needed to open it) -->
+          <a id="whatsappBtn" href="#" class="btn btn-success d-none" target="_blank" rel="noopener"><i class="bi bi-whatsapp"></i> Contact on WhatsApp</a>
+          <p id="loginToContact" class="d-none text-muted"><i class="bi bi-lock-fill"></i> <a href="login.html">Login</a> to contact the person.</p>
+
+          <!-- Shown when the item is returned -->
+          <div id="returnedBox" class="returned-box p-3 mt-3 d-none">
+            <h5 class="mb-1"><i class="bi bi-check-circle-fill text-success"></i> Returned!</h5>
+            <p id="returnedInfo" class="mb-1"></p>
+            <p id="returnedNoteText" class="fst-italic mb-2"></p>
+            <a id="certificateLink" href="#" class="btn btn-sm btn-lf d-none"><i class="bi bi-patch-check-fill"></i> View finder certificate</a>
+          </div>
+
+          <!-- Shown only to the person who reported the item. The form opens with <details> (no JavaScript) -->
+          <div id="returnPanel" class="return-panel card p-3 mt-3 d-none">
+            <details>
+              <summary id="returnSummary">I returned this item</summary>
+              <form id="returnForm" class="mt-3">
+                <div class="mb-2">
+                  <label id="returnedToLabel" for="returnedTo" class="form-label">Name (optional)</label>
+                  <input type="text" class="form-control" id="returnedTo">
+                </div>
+                <div class="mb-3">
+                  <label id="returnedNoteLabel" for="returnedNote" class="form-label">Thank-you note (optional)</label>
+                  <textarea class="form-control" id="returnedNote" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-lf">Confirm: item returned</button>
+              </form>
+            </details>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-4">
+    <div class="container">
+      <p class="mb-1"><i class="bi bi-trophy-fill"></i> Every returned item makes our campus better. <a href="heroes.html">Meet the Finder Heroes</a></p>
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+  <!-- Our JavaScript. Order matters: data and helpers first, the page script last -->
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/detail.js"></script>
+</body>
+</html>

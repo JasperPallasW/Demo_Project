@@ -1,0 +1,240 @@
+==============================================================================
+FIND YOUR LOST ITEMS - REVISED PLAN v2  |  15 - 30 OCTOBER 2026
+Basic Web Development | ESE Project (50 marks) | Team of 2
+==============================================================================
+
+This plan replaces the earlier plan. It is a DRAFT: if Student B has better
+ideas, tell Student A by chat and we update it together.
+
+
+------------------------------------------------------------------------------
+1. LECTURER FEEDBACK AND OUR ANSWER
+------------------------------------------------------------------------------
+
+  Feedback                                   What we did (version 2)
+  -----------------------------------------  ----------------------------------------
+  1. Add the student's origin: Indian state  Register form has "India" (choose state /
+     or, for international students, the     union territory) or "International" (type
+     country                                 country). It is saved in the account and
+                                             shown next to the name.
+  2. Other places already take LOST reports. Finder Heroes: 10 points per returned item,
+     Our strength is FOUND items. Honor the  badges (Good Samaritan, Campus Helper,
+     finders who return items                Campus Hero), podium, ranking, thank-you
+                                             wall, printable certificate.
+  3. Front-end only: make the UI impressive  New design: hero, live numbers, cards with
+                                             photo and status ribbon, animations,
+                                             icons, podium, certificate, campus map
+                                             with pins and tooltips.
+  4. Use less JavaScript and explain the     Menu, tabs, category filter, origin switch,
+     impact                                  FAQ, tooltips are HTML + CSS only. JavaScript
+                                             only handles data. See
+                                             Analisis_Kurangi_JavaScript.txt
+
+
+------------------------------------------------------------------------------
+2. WHERE WE ARE (15 OCT)
+------------------------------------------------------------------------------
+
+DONE (code ready in the project folder, tested in a real browser)
+  - 10 pages: home, items, detail, report, map, history, heroes, certificate,
+    login, register
+  - Accounts with origin, login/logout, navbar user name
+  - Items saved in localStorage, new reports with photo, search, CSS filters
+  - Mark as returned, honor points and badges, ranking, certificate
+  - README, plan, analysis document
+
+STILL TO DO
+  - Real campus map image + pin positions, real photos for demo items
+  - Check everything on real phones and on the live site
+  - Deployment (Netlify), PPT, final README with screenshots
+  - Smart matching (simple AI, 2 marks) and claim verification (after oral test)
+
+
+------------------------------------------------------------------------------
+3. IMPORTANT DATES
+------------------------------------------------------------------------------
+
+  Thu 15 Oct   Student A puts version 2 into the repository (step by step commits).
+  Sat 17 Oct   Student B joins (onboarding first).
+  Tue 20 Oct   TARGET: demo-ready, at least 15 of 18 tests pass (83%).
+  21-22 Oct    Buffer. Oral test / progress presentation (date: to confirm).
+  Tue 27 Oct   Final deploy and submission (Google Drive: code ZIP, PPT, GitHub link).
+  30 Oct       Last backup day. The Final Exam is also in this period.
+
+
+------------------------------------------------------------------------------
+4. TEAM RULES
+------------------------------------------------------------------------------
+
+  1. UNDERSTAND BEFORE COMMIT. The oral test checks understanding. Before you
+     commit a file, explain in your own words what it does.
+  2. Pull first every day, push at the end of the day.
+  3. Small commits, clear messages (feat:, fix:, docs:, style:).
+  4. Use your OWN GitHub account for your own commits.
+  5. Avoid editing the same file on the same day. Say it in chat if you must.
+  6. Morning message ("Today I do ___"), evening message ("Done: ___, pushed").
+  7. No new features until the tests pass.
+
+
+------------------------------------------------------------------------------
+5. DAY-BY-DAY PLAN
+------------------------------------------------------------------------------
+
+THU 15 OCT - Student A: put version 2 into the project
+  Copy the new files and commit in logical steps (about 8-10 commits):
+    style: replace style.css with the new design
+    feat: add data layer (data.js, locations.js, storage.js)
+    feat: add ui helpers and auth with student origin
+    feat: items page with search and CSS filters
+    feat: report page with photo upload
+    feat: detail page and mark as returned
+    feat: finder heroes page and certificate
+    feat: history and map pages
+    feat: new home page
+    docs: update README and plans
+  Then read docs/Analisis_Kurangi_JavaScript.txt and explain the 4 "ways files
+  connect" to yourself (see the earlier guide, section C).
+
+FRI 16 OCT - Student A: test + first deploy
+  Run all 18 tests (section 8). Fix bugs. First Netlify deploy (30 min) and test
+  the live link on a phone.
+
+SAT 17 OCT - Student B joins
+  Onboarding (about 45 min): accept invite, clone, open index.html, try every
+  page, read this plan and the README. Then start tasks B2 and B3.
+  Student A: fix bugs found on the live site, prepare the oral-test demo.
+
+SUN 18 OCT
+  Student B: B4 and B5. Student A: review B's commits, test again.
+
+MON 19 OCT - full test of all 18 cases (both), write results in docs/test-report.md
+
+TUE 20 OCT - TARGET DAY: at least 15 of 18 pass. Practice the oral test.
+
+WED 21 - THU 22 OCT - buffer, oral test, rest for the Final Exam
+
+FRI 23 - SAT 24 OCT - after the oral test
+  Smart matching (simple AI): compare a lost report with found items, score by
+  category, location, and keywords. Claim verification with the hidden detail.
+
+SUN 25 - MON 26 OCT - polish, README with screenshots, PPT
+
+TUE 27 OCT - final deploy, ZIP, upload to Google Drive
+
+WED 28 - FRI 30 OCT - backup days
+
+If we run late, drop in this order: claim verification, smart matching (make it
+simple), extra polish. Never drop the 18 core tests.
+
+
+------------------------------------------------------------------------------
+6. WORK LIST FOR STUDENT B (FROM 17 OCT)
+------------------------------------------------------------------------------
+
+Please choose tasks you feel comfortable with and tell us.
+
+  ID  Task                                           Files                Level
+  --  ---------------------------------------------  -------------------  ------
+  B1  Setup: invite, clone, pull, try the site       -                    Easy
+  B2  Real photos for demo items 4-13: put images in
+      images/, change the "image" field in data.js,
+      then increase SEED_VERSION by 1. Keep file
+      names EXACTLY the same (capital letters)       js/data.js, images/  Easy
+  B3  Real campus map: replace the placeholder image
+      and set x / y (percent) of each building       js/locations.js,
+      (see the comment in the file)                  images/, map.html    Medium
+  B4  Proofread and improve all English texts on the
+      pages (home, FAQ, forms, Heroes rules)         pages/*.html         Easy
+  B5  Documentation: README screenshots, wireframes
+      in docs/wireframes/, docs/test-report.md       README.md, docs/     Easy
+  B6  CSS polish and phone check: colors, spacing,
+      small screens. Report bugs in chat             css/style.css        Medium
+  B7  Presentation: outline and slides (Problem,
+      Solution, Features, Honor system, Team)        (PPT file)           Easy
+  B8  If you know JavaScript: smart matching         js/matching.js       Hard
+
+About 20 honest commits from 17 to 30 Oct (about 1.5 per day): one commit for
+each finished small step.
+
+
+------------------------------------------------------------------------------
+7. WORK DISTRIBUTION (DRAFT)
+------------------------------------------------------------------------------
+
+                 Student A                       Student B
+  -------------  ------------------------------  ----------------------------
+  Pages / logic  All pages and JavaScript        Data, map coordinates
+  Design         Base design                     Polish, phone check, texts
+  Docs           Analysis, plan                  README, test report, PPT
+  Deployment     Netlify setup                   Checks the live site
+  Testing        Runs tests                      Runs tests, writes report
+
+Note for the README: from 7 to 16 Oct, Student A worked alone because Student B
+was not available.
+
+
+------------------------------------------------------------------------------
+8. TEST CHECKLIST (18 TESTS)  -  need at least 15 PASS
+------------------------------------------------------------------------------
+
+  No   What to do                                       Expected result            Pass?
+  ---  -----------------------------------------------  -------------------------  -----
+  T01  Register as an India student (choose a state)    Success, state saved        [ ]
+  T02  Register as an international student (country)   Success, country saved      [ ]
+  T03  Register with the same email again               Error message               [ ]
+  T04  Login with the correct data                      Navbar: "Hi, Name", Logout  [ ]
+  T05  Login with a wrong password                      Error, not logged in        [ ]
+  T06  Click Logout                                     Navbar: Login / Register    [ ]
+  T07  Open Items                                       Cards with photo and badge  [ ]
+  T08  Keyword search                                   Only matching cards         [ ]
+  T09  Status tabs and category filter                  Only matching cards         [ ]
+  T10  Report a found item (with photo), then refresh   Item is still there         [ ]
+  T11  Open an item detail                              Correct data, WhatsApp
+                                                        button when logged in       [ ]
+  T12  Reporter marks the item as returned              Status Returned, note shown [ ]
+  T13  Open Finder Heroes                               Ranking, points, badge
+                                                        updated                     [ ]
+  T14  Open a certificate and print / save as PDF       Correct name and item       [ ]
+  T15  Open History                                     Correct counts and table    [ ]
+  T16  Open Map                                         One pin per item            [ ]
+  T17  Open on a phone (or narrow window)               Menu button works, pages
+                                                        look good                   [ ]
+  T18  Open the live Netlify link and visit all pages   Everything loads, images
+                                                        show                        [ ]
+
+  Score = PASS / 18.   15 PASS = 83% (ready).   14 PASS = 78% (not yet).
+
+
+------------------------------------------------------------------------------
+9. FIRST MESSAGE FOR STUDENT B (COPY & SEND)
+------------------------------------------------------------------------------
+
+Hi! Our website is "Find Your Lost Items". The lecturer gave us feedback: add
+the student's origin, honor the people who return found items (Finder Heroes),
+make the design better, and use less JavaScript. I already built these in the
+repository. Before Saturday please: 1) accept the GitHub invitation, 2) install
+GitHub Desktop and VS Code, 3) clone the repo, 4) open index.html and try all
+pages. I sent you the plan with the task list (B1-B8). Please choose the tasks
+you like and tell me. My English is limited, so I use chat and short sentences.
+Which part do you know best: HTML, CSS, or JavaScript? Thanks!
+
+
+------------------------------------------------------------------------------
+10. NOTES AND RISKS
+------------------------------------------------------------------------------
+
+  - Data is saved in each browser (localStorage). Another computer will not see
+    the same data. Say it honestly: "a real product needs a server and database".
+  - Passwords are plain text in the demo. Not safe for real use.
+  - File names are case sensitive on Netlify: blackWallet.jpeg is not
+    blackwallet.jpeg.
+  - style.css must be loaded AFTER Bootstrap.
+  - The CSS filters and tabs need a modern browser (:has). Old browsers show all
+    items instead.
+  - Bootstrap and the icons come from the internet (CDN). Check the live site
+    with internet on.
+  - Names and origins of the demo finders are made up.
+
+==============================================================================
+END OF DOCUMENT
+==============================================================================

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finder Heroes - Find Your Lost Items</title>
+  <!-- Order matters: Bootstrap first, then icons, then OUR style.css (the last one wins) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-root="../">
+
+  <!-- ===== NAVBAR =====
+       The phone menu works with CSS only: a hidden checkbox + a label (no Bootstrap JavaScript) -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-lf sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="../index.html"><i class="bi bi-search"></i> Find Your Lost Items</a>
+      <input type="checkbox" id="menuToggle" class="menu-toggle" aria-hidden="true">
+      <label for="menuToggle" class="navbar-toggler" aria-label="Open or close the menu"><span class="navbar-toggler-icon"></span></label>
+      <div class="navbar-collapse menu-links">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="items.html">Items</a></li>
+          <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+          <li class="nav-item"><a class="nav-link" href="map.html">Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+          <li class="nav-item"><a class="nav-link active" href="heroes.html">Heroes</a></li>
+          <li class="nav-item"><a class="nav-link" id="navLogin" href="login.html">Login</a></li>
+          <li class="nav-item"><a class="nav-link btn-register" id="navRegister" href="register.html">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-header text-center">
+    <div class="container">
+      <h1 class="fw-bold mb-1"><i class="bi bi-trophy-fill"></i> Finder Heroes</h1>
+      <p class="mb-0">Thank you to every student who returned a lost item to its owner.</p>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <!-- Podium (made by heroes.js) -->
+    <div class="row g-4 mb-5 justify-content-center" id="podium"></div>
+
+    <!-- How to earn honors (plain HTML) -->
+    <div class="rules-box p-4 mb-5">
+      <h4 class="page-title">How to become a hero</h4>
+      <ol>
+        <li>Found something? Report it with the option <strong>"I found an item"</strong>.</li>
+        <li>Meet the owner and give the item back.</li>
+        <li>Open your item and press <strong>"I returned this item to its owner"</strong>. You get <strong>10 points</strong> and a certificate.</li>
+      </ol>
+      <span class="honor-badge honor-bronze"><i class="bi bi-heart-fill"></i> Good Samaritan: 1 return</span>
+      <span class="honor-badge honor-silver"><i class="bi bi-award-fill"></i> Campus Helper: 2 returns</span>
+      <span class="honor-badge honor-gold"><i class="bi bi-trophy-fill"></i> Campus Hero: 3 or more</span>
+    </div>
+
+    <!-- Full ranking (made by heroes.js) -->
+    <h3 class="section-title mb-3">Full ranking</h3>
+    <div class="table-responsive bg-white rounded shadow-sm mb-5">
+      <table class="table table-striped align-middle mb-0">
+        <thead class="table-light">
+          <tr><th>#</th><th>Finder</th><th>From</th><th>Returned</th><th>Points</th><th>Badge</th></tr>
+        </thead>
+        <tbody id="heroesBody"></tbody>
+      </table>
+    </div>
+
+    <!-- Thank-you wall (made by heroes.js) -->
+    <h3 class="section-title mb-3">Thank-you wall</h3>
+    <div class="row g-4" id="thanksWall"></div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer-lf text-center py-4">
+    <div class="container">
+      <p class="mb-1"><i class="bi bi-trophy-fill"></i> Every returned item makes our campus better. <a href="heroes.html">Meet the Finder Heroes</a></p>
+      <small>&copy; 2026 Find Your Lost Items | Basic Web Development Project</small>
+    </div>
+  </footer>
+
+  <!-- Our JavaScript. Order matters: data and helpers first, the page script last -->
+  <script src="../js/data.js"></script>
+  <script src="../js/storage.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/heroes.js"></script>
+</body>
+</html>
